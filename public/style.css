@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+    font-family: arial, sans-serif;
+  }
+  
+  body {
+    background: linear-gradient(#ffffff, #c0c0c0);
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    background: url('https://image.freepik.com/free-vector/robots-pattern-design_1131-2.jpg');
+  }
