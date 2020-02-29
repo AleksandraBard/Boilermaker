@@ -4,7 +4,7 @@ const {User} = require('./server/db/userModel')
 
 const seed = async () => {
     await db.sync({force: true})
-
+    console.log('db synced!')
     await User.create({
       email: 'email@gmail.com',  
       password: '888',

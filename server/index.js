@@ -27,10 +27,13 @@ passport.serializeUser((user, done) => {
   }
 });
 
-passport.deserializeUser((id, done) => {
-  User.findById(id)
-    .then(user => done(null, user))
-    .catch(done);
+passport.deserializeUser(async (id, done) => {
+  try {
+      const user = await db.models.user.findByPk(id)
+      done(null, user)
+  } catch (error) {
+      done(error)
+  }
 });
 
 
@@ -58,6 +61,16 @@ app.use(express.static(path.join(__dirname, '../public')))
 // Make sure this is right at the end of your server logic!
 // The only thing after this might be a piece of middleware to serve up 500 errors for server problems
 // (However, if you have middleware to serve up 404s, that go would before this as well)
+app.use((req, res, next) => {
+  if(path.extname(req.path).length) {
+    const err = new Error('Not found.')
+    err.status = 404
+    next(err)
+  } else {
+    next()
+  }
+})
+
 app.get('*', function (req, res, next) {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
