@@ -1,14 +1,15 @@
 import React from 'react'
-import {Users} from './Users'
+import {Navbar} from './Navbar'
+import Routes from './Routes'
 
 
-export default class Main extends React.Component {
-    render() {
+const Main = () => {
         return (
-                <div id='users'>
-                    <h1>ALL USERS</h1>
-                    <Users />
+                <div>
+                    <Navbar />
+                    <Routes />
                 </div>
         )
-    }
 }
+
+export default Main 
